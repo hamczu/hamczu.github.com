@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>MooTools more fork test</title>
+        <script src="mootools-1.4.0.js"></script>
+        <script src="mootools-more-1.4.0.1.js"></script>
+        <script>
+            window.addEvent('domready', function(){
+                new HtmlTable('test1', {
+                    sortable: true,                
+                    sortIndex: 1
+                });
+                
+                
+                new HtmlTable('test2', {
+                    sortable: true,                
+                    sortIndex: 1,
+                    parsers: ['number', 'number', 'date', 'date', 'date'],
+                    getters: ['text', 'input', 'input', 'title', function(){
+                            return this.getElement('time').get('title')
+                    }]
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <table id="test1">
+            <thead>
+                <tr><th>Id</th><th>Text</th><th>Date</th><th>Input</th><th>Checkbox</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>abc</td>
+                    <td>2005-05-05</td>
+                    <td><input type="text" value="abc" /></td>
+                    <td><input type="checkbox" checked="checked" /></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>lorem</td>
+                    <td>2005-01-05</td>
+                    <td><input type="text" value="lorem" /></td>
+                    <td><input type="checkbox" checked="checked" /></td>                    
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>def</td>
+                    <td>2005-05-03</td>
+                    <td><input type="text" value="def" /></td>
+                    <td><input type="checkbox" /></td>                    
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>xyz</td>
+                    <td>2005-02-05</td>
+                    <td><input type="text" value="xyz" /></td>
+                    <td><input type="checkbox" /></td>                    
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>xxx</td>
+                    <td>2005-05-01</td>
+                    <td><input type="text" value="xxx" /></td>
+                    <td><input type="checkbox" /></td>                    
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="test2">
+            <thead>
+                <tr><th>Id</th><th>Number input</th><th>Date input</th><th>Fuzzy date in title</th><th>Fuzzy date in time element</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" value="1" /></td>
+                    <td><input type="text" value="2011-09-10" /></td>
+                    <td title="2011-09-10">3 weeks ago</td>
+                    <td><time title="2011-09-30 09:13:28" datetime="2011-09-30T09:13:28+02:00">4 hours ago</time></td>
+                </tr>
+                <tr>
+                    <td>2</td>                   
+                    <td><input type="text" value="2" /></td>
+                    <td><input type="text" value="2011-09-16" /></td>
+                    <td title="2011-09-16">2 weeks ago</td>
+                    <td><time title="2011-09-29 18:56:59" datetime="2011-09-29T18:56:59+02:00">19 hours ago</time></td>
+                </tr>
+                <tr>
+                    <td>3</td>                   
+                    <td><input type="text" value="3" /></td>
+                    <td><input type="text" value="2011-09-29" /></td>
+                    <td title="2011-09-29">yesterday</td>
+                    <td><time title="2011-09-29 12:26:56" datetime="2011-09-29T12:26:56+02:00">1 day and 1 hour ago</time></td>
+                </tr>
+                <tr>
+                    <td>4</td>                   
+                    <td><input type="text" value="4" /></td>
+                    <td><input type="text" value="2011-09-31" /></td>
+                    <td title="2011-09-31">tomorrow</td>
+                    <td><time title="2011-09-29 16:41:50" datetime="2011-09-29T16:41:50+02:00">21 hours ago</time></td>
+                </tr>
+                <tr>
+                    <td>5</td>                   
+                    <td><input type="text" value="5" /></td>
+                    <td><input type="text" value="2011-09-30" /></td>
+                    <td title="2011-09-30">today</td>
+                    <td><time title="2011-09-29 00:39:04" datetime="2011-09-29T00:39:04+02:00">1 day 13 hours ago</time></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
